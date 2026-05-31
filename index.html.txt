@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>林清扬 | 个人主页 · 背景定制</title>
+    <!-- 极简风格，蓝色主调，全屏背景使用上传图片 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #0f172a;
+            line-height: 1.5;
+            /* 使用您上传的图片作为网页背景 */
+            background-image: url('05c9f7be7dd8547b06c4f0ec6bb65f6e.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* 半透明柔光遮罩，增强文字可读性，保留蓝色调印象 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(239, 246, 255, 0.82);
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+
+        /* 额外蓝色淡淡渐变层，更贴合蓝调主题 */
+        .bg-blue-tint {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, rgba(59,130,246,0.06) 0%, rgba(37,99,235,0.1) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 头部区域 清爽干净 */
+        header {
+            padding: 3rem 0 2rem 0;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ffffff, #eef2ff);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 8px 20px rgba(59,130,246,0.2);
+            border: 2px solid white;
+        }
+
+        .avatar i {
+            font-size: 3rem;
+            color: #2563eb;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.25rem;
+            color: #0f172a;
+        }
+
+        .tagline {
+            color: #1e40af;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .bio {
+            color: #1e293b;
+            max-width: 500px;
+            margin: 0.5rem auto 0;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 240, 0.2);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        /* 所有卡片使用半透明磨砂玻璃效果，突出背景美感 */
+        section, .contact-block {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 1.8rem;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.2s;
+        }
+
+        .life-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(59,130,246,0.2);
+            border-radius: 1.2rem;
+            transition: 0.1s ease;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #0f172a;
+        }
+
+        .section-title i {
+            color: #2563eb;
+            font-size: 1.3rem;
+        }
+
+        /* 经历列表 */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .exp-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: transparent;
+            backdrop-filter: none;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+        }
+
+        .exp-icon {
+            background: rgba(59,130,246,0.15);
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .exp-icon i {
+            color: #2563eb;
+            font-size: 1.2rem;
+        }
+
+        .exp-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .exp-meta {
+            font-size: 0.8rem;
+            color: #1e40af;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-desc {
+            font-size: 0.9rem;
+            color: #1e293b;
+        }
+
+        /* 生活网格 */
+        .life-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .life-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 1.2rem;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: 0.2s;
+        }
+
+        .life-card i {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .life-card span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        /* 技能标签 */
+        .skill-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .skill {
+            background: rgba(241, 245, 249, 0.9);
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e293b;
+            backdrop-filter: blur(2px);
+        }
+
+        /* 联系区域独立卡片 */
+        .contact-block {
+            background: rgba(239, 246, 255, 0.85);
+            backdrop-filter: blur(4px);
+            text-align: center;
+            border-radius: 1.8rem;
+            padding: 1.8rem 1.5rem;
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.2rem;
+        }
+
+        .social a {
+            color: #1e3a8a;
+            font-size: 1.6rem;
+            transition: 0.1s;
+        }
+
+        .social a:hover {
+            color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.2rem 0 2rem;
+            font-size: 0.8rem;
+            color: #1e293b;
+            background: transparent;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 1rem;
+            }
+            section, .contact-block {
+                padding: 1.2rem;
+            }
+            .life-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            header {
+                padding: 2rem 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-blue-tint"></div>
+<div class="container">
+    <!-- 头部区域：简洁清晰 -->
+    <header>
+        <div class="avatar">
+            <i class="fas fa-feather-alt"></i>
+        </div>
+        <h1>林清扬</h1>
+        <div class="tagline">全栈开发 · 生活记录者</div>
+        <div class="bio">写干净代码，过具体生活。</div>
+    </header>
+
+    <!-- 经历板块 简洁大方 -->
+    <section>
+        <div class="section-title">
+            <i class="fas fa-briefcase"></i> 
+            <span>经历</span>
+        </div>
+        <div class="exp-list">
+            <div class="exp-item">
+                <div class="exp-icon"><i class="fas fa-code"></i></div>
+                <div class="exp-content">
+                    <h3>资深前端工程师</h3>
+                    <div class="exp-meta">字节跳动 · 2022 – 至今</div>
+                    <div class="exp-desc">负责设计系统 & 架构演进，组件库性能优化，推动全栈协同。</div>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-icon"><i class="fas fa-laptop-code"></i></div>
+                <div class="exp-content">
+                    <h3>开源创作者</h3>
+                    <div class="exp-meta">Vue / React 生态 · 2021 – 至今</div>
+                    <div class="exp-desc">维护插件库，累计项目获得 700+ GitHub stars，热爱技术分享。</div>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="exp-content">
+                    <h3>计算机硕士 · 复旦大学</h3>
+                    <div class="exp-meta">2019 – 2022</div>
+                    <div class="exp-desc">前端工程化、Web 性能优化方向，发表一篇国际会议论文。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 生活部分 轻量展示爱好与日常 -->
+    <section>
+        <div class="section-title">
+            <i class="fas fa-heart"></i>
+            <span>生活瞬间</span>
+        </div>
+        <div class="life-grid">
+            <div class="life-card"><i class="fas fa-hiking"></i><span>山野徒步</span></div>
+            <div class="life-card"><i class="fas fa-camera"></i><span>街拍光影</span></div>
+            <div class="life-card"><i class="fas fa-book"></i><span>阅读哲思</span></div>
+            <div class="life-card"><i class="fas fa-mug-hot"></i><span>手冲咖啡</span></div>
+            <div class="life-card"><i class="fas fa-palette"></i><span>数字绘画</span></div>
+            <div class="life-card"><i class="fas fa-music"></i><span>独立音乐</span></div>
+        </div>
+    </section>
+
+    <!-- 技能标签 极简-->
+    <section>
+        <div class="section-title">
+            <i class="fas fa-cogs"></i>
+            <span>技术栈</span>
+        </div>
+        <div class="skill-wrap">
+            <span class="skill">React/Next.js</span>
+            <span class="skill">TypeScript</span>
+            <span class="skill">Vue/Nuxt</span>
+            <span class="skill">Node.js</span>
+            <span class="skill">Python</span>
+            <span class="skill">TailwindCSS</span>
+            <span class="skill">GitHub Actions</span>
+            <span class="skill">Docker</span>
+        </div>
+        <div style="margin-top: 1rem; font-size: 0.85rem; color: #1e293b;">
+            <i class="fas fa-cloud-sun" style="color:#2563eb;"></i> 探索中：云原生 / WebAssembly
+        </div>
+    </section>
+
+    <!-- 联系板块 + 社交链接 无小红书号 -->
+    <div class="contact-block">
+        <i class="fas fa-paper-plane" style="font-size: 1.8rem; color: #2563eb;"></i>
+        <h3 style="margin: 0.5rem 0 0.2rem; font-weight: 600;">保持连接</h3>
+        <p style="font-size: 0.85rem; color: #0f172a;">技术 · 灵感 · 日常分享</p>
+        <div class="social">
+            <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="mailto:qingyang@example.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">📧 qingyang.lin@dev.me</p>
+        <p style="margin-top: 0.4rem; font-size: 0.75rem; opacity: 0.7;">记录开发日常与生活手记</p>
+    </div>
+
+    <footer>
+        <p>© 2025 林清扬 · 背景定制 | 部署于 GitHub Pages</p>
+        <p style="margin-top: 4px;">✨ 简洁蓝调 · 保持好奇</p>
+    </footer>
+</div>
+
+<!-- 平滑滚动辅助 -->
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === "#" || href === "") return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
